@@ -1,0 +1,80 @@
+package me.gitai.ecs.systems;
+
+import me.gitai.ecs.Entity;
+import me.gitai.ecs.components.*;
+
+import java.util.List;
+
+/**
+ * Created by Gitai.me on 9/8/17.
+ */
+public class SysCollision {
+    public SysCollision(List<Entity> entities) {
+        for (int entityid1 = entities.size() -1; entityid1 >=0 ; entityid1--) {
+            Entity entity1 = entities.get(entityid1);
+
+            if(entity1.hasComponent(CompCollision.getStaticName()) &&
+                    entity1.hasComponent(CompPosition.getStaticName()) &&
+                    entity1.hasComponent(CompHealth.getStaticName())) {
+                for (int entityid2 = entities.size() - 1; entityid2 >=entityid1 ; entityid2--) {
+                    if (entities.size() < entityid2) continue;
+                    Entity entity2 = entities.get(entityid2);
+
+                    if(entity2 != entity1 &&
+                            entity2.hasComponent(CompCollision.getStaticName()) &&
+                            entity2.hasComponent(CompPosition.getStaticName()) &&
+                            entity2.hasComponent(CompHealth.getStaticName())){
+
+                        if (isCollision(entity1, entity2)) {
+                            killEntity(entity1, entity2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean isCollision(Entity entity1, Entity entity2) {
+        CompPosition position1 = (CompPosition)entity1.getComponent(CompPosition.getStaticName());
+        CompPosition position2 = (CompPosition)entity2.getComponent(CompPosition.getStaticName());
+
+        int size1 = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName())).getSize();
+        int size2 = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName())).getSize();
+
+        Rect rect1 = new Rect(
+                position1.getX() - size1,
+                position1.getY() - size1,
+                size1*2,
+                size1*2);
+        Rect rect2 = new Rect(
+                position2.getX() - size2,
+                position2.getY() - size2,
+                size2*2,
+                size2*2);
+
+        return rect1.isCollision(rect2);
+    }
+
+    private void killEntity(Entity entity1, Entity entity2) {
+        CompHealth health1 = (CompHealth) entity1.getComponent(CompHealth.getStaticName());
+        CompHealth health2 = (CompHealth) entity2.getComponent(CompHealth.getStaticName());
+
+        if (health1.getValue() <= 0 || health2.getValue() <= 0 ) return;
+
+        health1.setValue(health1.getValue() - health2.getValue());
+        health2.setValue(- health1.getValue());
+    }
+
+    class Rect extends me.gitai.ecs.common.Rect {
+        public Rect(int x, int y, int width, int height) {
+            super(x, y, width, height);
+        }
+
+        public boolean isCollision(Rect rect) {
+            return (getLeft() < rect.getRight() &&
+                    getRight() > rect.getLeft() &&
+                    getTop() < rect.getBottom() &&
+                    getBottom() > rect.getTop());
+        }
+    }
+}
