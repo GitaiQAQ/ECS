@@ -1,4 +1,4 @@
-package x;
+package me.gitai.ecs;
 
 import org.newdawn.slick.*;
 
