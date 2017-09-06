@@ -1,6 +1,7 @@
-package me.gitai.ecs;
+package me.gitai.demo.Sklick2d;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.Graphics;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/5/17.

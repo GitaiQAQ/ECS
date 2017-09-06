@@ -1,9 +1,7 @@
 package me.gitai.ecs;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-
 import java.util.HashMap;
+import org.newdawn.slick.*;
 
 /**
  * Created by Gitai.me on 9/8/17.
