@@ -12,7 +12,7 @@ public class CompHealth extends Component {
     }
 
     private int max = 20;
-    private int value = 20;
+    private int value = 200;
 
     public CompHealth() {
         this.value = 20;
@@ -20,7 +20,7 @@ public class CompHealth extends Component {
 
     public CompHealth(int value) {
         this.max = value;
-        this.value = value;
+        this.value = value * 50;
     }
 
     public int getMax() {
@@ -31,12 +31,20 @@ public class CompHealth extends Component {
         this.max = max;
     }
 
-    public int getValue() {
+    public int getValueDouble() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValueDouble(int value) {
         this.value = value;
+    }
+
+    public int getValue() {
+        return value/50;
+    }
+
+    public void setValue(int value) {
+        this.value = value*50;
     }
 
     public double getPercentage() {

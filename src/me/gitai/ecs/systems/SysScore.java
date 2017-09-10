@@ -20,6 +20,16 @@ public class SysScore extends BaseSystem{
         return mScore;
     }
 
+    public String getHumanReadable() {
+        if (mScore > 1000000000)
+            return mScore/1000000000 + "b";
+        if (mScore > 10000000)
+            return mScore/1000000 + "m";
+        if (mScore > 10000)
+            return mScore/1000 + "k";
+        return String.valueOf(mScore);
+    }
+
     @Override
     public void update() {
         for (int i = mEntitys.size()-1; i >=0 ; i--) {

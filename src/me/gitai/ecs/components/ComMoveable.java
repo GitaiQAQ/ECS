@@ -26,6 +26,10 @@ public class ComMoveable extends Component {
         return speed;
     }
 
+    public void setDegree(double degree) {
+        this.degree = Math.toRadians(degree);
+    }
+
     public double getDegree() {
         return degree;
     }

@@ -14,7 +14,7 @@ public class Demo extends BasicGame {
     }
 
     public Demo() {
-        super("Demo");
+        super("PlayState");
     }
 
     @Override

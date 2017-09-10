@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.common.Rect;
 import me.gitai.ecs.components.*;
@@ -20,14 +21,15 @@ public class BulletEntity extends Entity {
     private ComOwnership ownership;
     private CompPosition position;
     private CompCollision collision;
-    private ComMoveable moveable;
+    protected ComMoveable moveable;
     private ComBorder border;
+    protected ComAttenuation attenuation;
 
     public BulletEntity(Entity from, CompPosition position, int _health, int speed) throws SlickException {
         bullet = new Image("assets/img/bullet.png");
 
         appearance =
-                new CompAppearance((int)(5));
+                new CompAppearance(2, 5);
         health =
                 new CompHealth(_health);
         ownership = new ComOwnership(from);
@@ -40,12 +42,16 @@ public class BulletEntity extends Entity {
         border =
                 new ComBorder(new Rect(0, 0, Demo.WIDTH, Demo.HEIGHT));
 
+        attenuation = new ComAttenuation(500);
+
         addComponent(appearance);
+        addComponent(ownership);
         addComponent(health);
         addComponent(this.position);
         addComponent(collision);
         addComponent(moveable);
         addComponent(border);
+        addComponent(attenuation);
     }
 
     public BulletEntity setOnCollision(CompCollision.CollisionCallback collisionCallback) {

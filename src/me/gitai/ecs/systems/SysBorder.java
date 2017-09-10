@@ -31,12 +31,14 @@ public class SysBorder extends BaseSystem {
     public boolean isOut(Entity entity) {
         ComBorder broder = (ComBorder)entity.getComponent(ComBorder.getStaticName());
         CompPosition position = (CompPosition)entity.getComponent(CompPosition.getStaticName());
-        int size = ((CompAppearance)entity.getComponent(CompAppearance.getStaticName())).getSize();
+
+        CompAppearance appearance
+                = ((CompAppearance)entity.getComponent(CompAppearance.getStaticName()));
         Rect rect = new Rect(
-                position.getX() - size,
-                position.getY() - size,
-                size*2,
-                size*2);
+                position.getX() - appearance.getWidth(),
+                position.getY() - appearance.getHeight(),
+                appearance.getWidth()*2,
+                appearance.getHeight()*2);
 
         return rect.isOut(broder.getRect());
     }

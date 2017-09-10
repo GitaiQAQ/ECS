@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.common.Rect;
 import me.gitai.ecs.components.*;
@@ -31,17 +32,18 @@ public class AirplaneEntity extends Entity {
                 new CompHealth((int)(Math.random() * 100));
         position =
                 new CompPosition((int)(Math.random() * 90) - 45,
-                        (int)(Math.random() * Demo.WIDTH),
-                        (int)(Math.random() * (Demo.HEIGHT / 2)));
+                        (int)(Math.random() * Demo.WIDTH) - 100,
+                        (int)(Math.random() * (Demo.HEIGHT / 3)) - 100);
         collision =
                 new CompCollision();
         moveable =
-                new ComMoveable((int)(Math.random() * 8),
+                new ComMoveable((int)(Math.random() * 5),
                         (int)(Math.random() * 4) - 2);
         border =
-                new ComBorder(new Rect(0, 0, Demo.WIDTH, Demo.HEIGHT));
+                new ComBorder(new Rect(-100, -100, Demo.WIDTH + 200, Demo.HEIGHT + 200));
 
         addComponent(appearance);
+        addComponent(new ComOwnership(this));
         addComponent(health);
         addComponent(position);
         addComponent(collision);
@@ -68,12 +70,12 @@ public class AirplaneEntity extends Entity {
     }
 
     public CompPosition getHeader() {
-        int l = appearance.getSize() * 2;
+        int l = appearance.getHeight() * 2;
         double x1 = Math.sin(position.getDegree()) * l;
         double y1 = Math.cos(position.getDegree()) * l;
         // System.out.printf("%f %f %f\n", x1, y1, Math.toDegrees(position.getDegree()));
         return new CompPosition(Math.toDegrees(position.getDegree())  ,
-            position.getX() + appearance.getSize()/2 + x1,
-            position.getY() + appearance.getSize()/2 + y1);
+            position.getX() + appearance.getWidth()/2 + x1,
+            position.getY() + appearance.getWidth()/2 + y1);
     }
 }

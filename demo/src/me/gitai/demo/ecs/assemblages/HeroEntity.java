@@ -1,11 +1,9 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
-import me.gitai.ecs.components.CompAppearance;
-import me.gitai.ecs.components.CompCollision;
-import me.gitai.ecs.components.CompHealth;
-import me.gitai.ecs.components.CompPosition;
+import me.gitai.ecs.components.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -37,6 +35,7 @@ public class HeroEntity extends Entity {
                 new CompCollision();
 
         addComponent(appearance);
+        addComponent(new ComOwnership(this));
         addComponent(health);
         addComponent(position);
         addComponent(collision);
@@ -62,6 +61,10 @@ public class HeroEntity extends Entity {
         return position;
     }
 
+    public CompHealth getHealth() {
+        return health;
+    }
+
     public CompPosition getTop() {
         return new CompPosition(position.getDegree(),
                 position.getX() + 45,
@@ -69,6 +72,6 @@ public class HeroEntity extends Entity {
     }
 
     public boolean isDead() {
-        return health.getValue() > 0;
+        return health.getValue() <= 0;
     }
 }

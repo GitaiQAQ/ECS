@@ -53,19 +53,26 @@ public class SysCollision extends BaseSystem{
         CompPosition position1 = (CompPosition)entity1.getComponent(CompPosition.getStaticName());
         CompPosition position2 = (CompPosition)entity2.getComponent(CompPosition.getStaticName());
 
-        int size1 = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName())).getSize();
-        int size2 = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName())).getSize();
+        ComOwnership ownership1 = (ComOwnership) entity1.getComponent(ComOwnership.getStaticName());
+        ComOwnership ownership2 = (ComOwnership) entity2.getComponent(ComOwnership.getStaticName());
+
+        if (ownership1.getFrom().equals(ownership2.getFrom())) return false;
+
+        CompAppearance appearance1
+                = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName()));
+        CompAppearance appearance2
+                = ((CompAppearance)entity1.getComponent(CompAppearance.getStaticName()));
 
         Rect rect1 = new Rect(
-                position1.getX() - size1,
-                position1.getY() - size1,
-                size1*2,
-                size1*2);
+                position1.getX() - appearance1.getWidth(),
+                position1.getY() - appearance1.getHeight(),
+                appearance1.getWidth()*2,
+                appearance1.getHeight()*2);
         Rect rect2 = new Rect(
-                position2.getX() - size2,
-                position2.getY() - size2,
-                size2*2,
-                size2*2);
+                position2.getX() - appearance1.getWidth(),
+                position2.getY() - appearance1.getHeight(),
+                appearance1.getWidth()*2,
+                appearance1.getHeight()*2);
 
         return rect1.isCollision(rect2);
     }
