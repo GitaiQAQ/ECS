@@ -8,11 +8,16 @@ import org.newdawn.slick.SlickException;
 import java.util.List;
 
 /**
- * Created by Gitai.me on 9/9/17.
+ * Created by Gitai.me(i@gitai.me) on 9/10/17.
  */
-public class SysLive extends BaseSystem {
-    public SysLive(List<Entity> entities) {
+public class SysScore extends BaseSystem{
+    private long mScore;
+    public SysScore(List<Entity> entities, long score) {
         super(entities);
+    }
+
+    public long getScore() {
+        return mScore;
     }
 
     @Override
@@ -22,8 +27,7 @@ public class SysLive extends BaseSystem {
             CompHealth health = (CompHealth)entity.getComponent(CompHealth.getStaticName());
 
             if (health.getValue() <= 0) {
-                entity = null;
-                mEntitys.remove(i);
+                mScore += health.getMax();
             }
         }
     }

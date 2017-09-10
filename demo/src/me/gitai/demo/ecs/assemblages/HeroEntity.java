@@ -62,9 +62,13 @@ public class HeroEntity extends Entity {
         return position;
     }
 
-    public CompPosition getHeader() {
+    public CompPosition getTop() {
         return new CompPosition(position.getDegree(),
                 position.getX() + 45,
                 position.getY() - 45);
+    }
+
+    public boolean isDead() {
+        return health.getValue() > 0;
     }
 }

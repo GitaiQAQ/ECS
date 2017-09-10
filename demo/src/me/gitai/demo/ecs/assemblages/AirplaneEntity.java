@@ -30,14 +30,14 @@ public class AirplaneEntity extends Entity {
         health =
                 new CompHealth((int)(Math.random() * 100));
         position =
-                new CompPosition((int)(Math.random() * 90) - 30,
+                new CompPosition((int)(Math.random() * 90) - 45,
                         (int)(Math.random() * Demo.WIDTH),
                         (int)(Math.random() * (Demo.HEIGHT / 2)));
         collision =
                 new CompCollision();
         moveable =
                 new ComMoveable((int)(Math.random() * 8),
-                        (int)(Math.random() * 3));
+                        (int)(Math.random() * 4) - 2);
         border =
                 new ComBorder(new Rect(0, 0, Demo.WIDTH, Demo.HEIGHT));
 
@@ -47,6 +47,11 @@ public class AirplaneEntity extends Entity {
         addComponent(collision);
         addComponent(moveable);
         addComponent(border);
+    }
+
+    public AirplaneEntity setOnCollision(CompCollision.CollisionCallback collisionCallback) {
+        collision.setCollisionCallback(collisionCallback);
+        return this;
     }
 
     @Override
@@ -66,7 +71,7 @@ public class AirplaneEntity extends Entity {
         int l = appearance.getSize() * 2;
         double x1 = Math.sin(position.getDegree()) * l;
         double y1 = Math.cos(position.getDegree()) * l;
-        System.out.printf("%f %f %f\n", x1, y1, Math.toDegrees(position.getDegree()));
+        // System.out.printf("%f %f %f\n", x1, y1, Math.toDegrees(position.getDegree()));
         return new CompPosition(Math.toDegrees(position.getDegree())  ,
             position.getX() + appearance.getSize()/2 + x1,
             position.getY() + appearance.getSize()/2 + y1);

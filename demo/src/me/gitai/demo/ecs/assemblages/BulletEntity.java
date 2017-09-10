@@ -17,21 +17,24 @@ public class BulletEntity extends Entity {
 
     private CompAppearance appearance;
     private CompHealth health;
+    private ComOwnership ownership;
     private CompPosition position;
     private CompCollision collision;
     private ComMoveable moveable;
     private ComBorder border;
 
-
-    public BulletEntity(CompPosition position, int _health, int speed) throws SlickException {
+    public BulletEntity(Entity from, CompPosition position, int _health, int speed) throws SlickException {
         bullet = new Image("assets/img/bullet.png");
+
         appearance =
                 new CompAppearance((int)(5));
         health =
                 new CompHealth(_health);
+        ownership = new ComOwnership(from);
         this.position = position;
         collision =
                 new CompCollision();
+
         moveable =
                 new ComMoveable(speed);
         border =
@@ -45,8 +48,13 @@ public class BulletEntity extends Entity {
         addComponent(border);
     }
 
-    public BulletEntity(int x, int y, int degree, int _health, int speed) throws SlickException {
-        this(new CompPosition(degree, x, y), _health, speed);
+    public BulletEntity setOnCollision(CompCollision.CollisionCallback collisionCallback) {
+        collision.setCollisionCallback(collisionCallback);
+        return this;
+    }
+
+    public BulletEntity(Entity from, int x, int y, int degree, int _health, int speed) throws SlickException {
+        this(from, new CompPosition(degree, x, y), _health, speed);
     }
 
     @Override
@@ -55,5 +63,12 @@ public class BulletEntity extends Entity {
         bullet.setRotation((float) - Math.toDegrees(position.getDegree()));
         graphics.drawImage(bullet, position.getX(), position.getY());
         // graphics.drawString(String.valueOf(health.getValue()), position.getX(), position.getY());
+    }
+
+
+    public CompPosition getTop() {
+        return new CompPosition(position.getDegree(),
+                position.getX() + 5,
+                position.getY() - 5);
     }
 }

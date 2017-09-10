@@ -1,17 +1,25 @@
 package me.gitai.ecs.systems;
 
+import me.gitai.ecs.BaseSystem;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.components.*;
+import org.newdawn.slick.SlickException;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me on 9/9/17.
  */
-public class SysBorder {
+public class SysBorder extends BaseSystem {
     public SysBorder(List<Entity> entitys) {
-        for (int i = 0; i < entitys.size(); i++) {
-            Entity entity = entitys.get(i);
+        super(entitys);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        for (int i = 0; i < mEntitys.size(); i++) {
+            Entity entity = mEntitys.get(i);
 
             if (entity.hasComponent(ComBorder.getStaticName()) && isOut(entity)) {
                 CompHealth health = (CompHealth)entity.getComponent(CompHealth.getStaticName());

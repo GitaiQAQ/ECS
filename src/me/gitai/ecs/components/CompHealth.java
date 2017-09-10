@@ -23,6 +23,14 @@ public class CompHealth extends Component {
         this.value = value;
     }
 
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
     public int getValue() {
         return value;
     }

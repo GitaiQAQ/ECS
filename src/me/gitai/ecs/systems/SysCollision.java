@@ -1,24 +1,31 @@
 package me.gitai.ecs.systems;
 
+import me.gitai.ecs.BaseSystem;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.components.*;
+import org.newdawn.slick.SlickException;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me on 9/8/17.
  */
-public class SysCollision {
+public class SysCollision extends BaseSystem{
     public SysCollision(List<Entity> entities) {
-        for (int entityid1 = entities.size() -1; entityid1 >=0 ; entityid1--) {
-            Entity entity1 = entities.get(entityid1);
+        super(entities);
+    }
+
+    @Override
+    public void update() {
+        for (int entityid1 = mEntitys.size() -1; entityid1 >=0 ; entityid1--) {
+            Entity entity1 = mEntitys.get(entityid1);
 
             if(entity1.hasComponent(CompCollision.getStaticName()) &&
                     entity1.hasComponent(CompPosition.getStaticName()) &&
                     entity1.hasComponent(CompHealth.getStaticName())) {
-                for (int entityid2 = entities.size() - 1; entityid2 >=entityid1 ; entityid2--) {
-                    if (entities.size() < entityid2) continue;
-                    Entity entity2 = entities.get(entityid2);
+                for (int entityid2 = mEntitys.size() - 1; entityid2 >=entityid1 ; entityid2--) {
+                    if (mEntitys.size() < entityid2) continue;
+                    Entity entity2 = mEntitys.get(entityid2);
 
                     if(entity2 != entity1 &&
                             entity2.hasComponent(CompCollision.getStaticName()) &&
@@ -26,6 +33,14 @@ public class SysCollision {
                             entity2.hasComponent(CompHealth.getStaticName())){
 
                         if (isCollision(entity1, entity2)) {
+                            try {
+                                ((CompCollision)entity1.getComponent(CompCollision.getStaticName()))
+                                        .whileCollision();
+                                ((CompCollision)entity2.getComponent(CompCollision.getStaticName()))
+                                        .whileCollision();
+                            } catch (SlickException e) {
+                                e.printStackTrace();
+                            }
                             killEntity(entity1, entity2);
                         }
                     }

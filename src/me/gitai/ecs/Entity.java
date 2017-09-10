@@ -34,7 +34,7 @@ public class Entity {
     }
 
     public void render(GameContainer gameContainer, Graphics graphics) {
-        // System.out.printf("Render: %s \n", name);
+        // BaseSystem.out.printf("Render: %s \n", name);
     }
 
     @Override

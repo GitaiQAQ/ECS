@@ -22,13 +22,15 @@ public class Demo extends BasicGame {
 
     }
 
+    int mI = 0;
+
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-
+        mI = i;
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-        graphics.drawString("Hello World!", 100f, 100f);
+        graphics.drawString("Hello World!" + mI, 100f, 100f);
     }
 }
