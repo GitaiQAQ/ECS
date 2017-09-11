@@ -1,18 +1,20 @@
 package me.gitai.demo.ecs.states;
 
 
+import me.gitai.demo.ecs.Data;
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.assemblages.AirplaneEntity;
 import me.gitai.demo.ecs.assemblages.BulletEntity;
 import me.gitai.demo.ecs.assemblages.HeroEntity;
 import me.gitai.demo.ecs.assemblages.RingBulletEntity;
 import me.gitai.ecs.BaseSystem;
+import me.gitai.demo.ecs.BasicGameState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.components.CompCollision;
 import me.gitai.ecs.components.CompPosition;
 import me.gitai.ecs.systems.*;
 import org.newdawn.slick.*;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import java.util.ArrayList;
@@ -27,9 +29,9 @@ public class PlayState extends BasicGameState {
     private HeroEntity hero;
     private boolean shoot = false;
 
-    private Image airplane;
-
     private BaseSystem sys_move, sys_collision, sys_border, sys_score, sys_live, sys_attenuation;
+    private long time;
+    private Image cursor;
 
     public PlayState() {
         super();
@@ -42,21 +44,19 @@ public class PlayState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        super.init(gameContainer, stateBasedGame);
+        time = System.nanoTime();
         hero = new HeroEntity();
-
-        airplane = new Image("assets/img/airplane.png");
         entitys.add(hero);
 
-        for (int i = 0; i < 2; i++) {
-            entitys.add(new AirplaneEntity(airplane));
-        }
+        //for (int i = 0; i < 2; i++) {
+        //    entitys.add(new AirplaneEntity());
+        //}
 
         gameContainer.setShowFPS(false);
 
         gameContainer.getGraphics()
                 .setColor(new Color(0, 0, 0));
-        gameContainer.getGraphics()
-                .setBackground(new Color(13*17, 13*17, 13*17));
 
         sys_move        = new SysMove(entitys);
         sys_collision   = new SysCollision(entitys);
@@ -64,12 +64,15 @@ public class PlayState extends BasicGameState {
         sys_score       = new SysScore(entitys, 0);
         sys_live        = new SysLive(entitys);
         sys_attenuation = new SysAttenuation(entitys);
+
+        cursor = Resource.getInstance().cursor.getWait().copy();
+        cursor.setAlpha(0);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         hero.updateHero(i);
-        entitys.add(new AirplaneEntity(airplane));
+        entitys.add(new AirplaneEntity());
         for (int j = 0; j < entitys.size(); j++) {
             Entity entity = entitys.get(j);
             if (entity instanceof AirplaneEntity){
@@ -77,7 +80,7 @@ public class PlayState extends BasicGameState {
                 entitys.add(new BulletEntity(
                         entity,
                         position,
-                        1, 18));
+                        1, 13));
             }
         }
 
@@ -88,8 +91,8 @@ public class PlayState extends BasicGameState {
                     20, - 20));
             entitys.add(new BulletEntity(hero, position.getX() + 30, position.getY() - 60, 30,
                     20, - 20));
-            entitys.add(new BulletEntity(hero, hero.getTop(),
-                            30, - 20));
+            entitys.add(new BulletEntity(hero,
+                    hero.getTop(), 30, - 20));
             entitys.add(new BulletEntity(hero, position.getX() + 60, position.getY() - 60, -30,
                     20, - 20));
             entitys.add(new BulletEntity(hero, position.getX() + 45, position.getY() - 45, -60,
@@ -120,11 +123,16 @@ public class PlayState extends BasicGameState {
         sys_border.update();
         sys_attenuation.update();
         sys_live.update();
-        if(hero.isDead()) stateBasedGame.enterState(0);
+        if(hero.isDead()) {
+            Data.getInstance().setTime(String.valueOf((System.nanoTime() - time)/1000000000));
+            Data.getInstance().setmScore(((SysScore)sys_score).getHumanReadable());
+            stateBasedGame.enterState(0);
+        }
     }
-        @Override
-        public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    @Override
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
+        super.render(gameContainer, stateBasedGame, graphics);
         graphics.drawString("FPS: " + gameContainer.getFPS(), 10F, 10F);
         graphics.drawString("Entities: " + entitys.size(), 10F, 34F);
         graphics.drawString("Score: " + ((SysScore)sys_score).getHumanReadable(), 10F, 58F);

@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.common.Rect;
@@ -26,7 +27,7 @@ public class BulletEntity extends Entity {
     protected ComAttenuation attenuation;
 
     public BulletEntity(Entity from, CompPosition position, int _health, int speed) throws SlickException {
-        bullet = new Image("assets/img/bullet.png");
+        this.bullet = Resource.getInstance().drawable.getBullet();
 
         appearance =
                 new CompAppearance(2, 5);

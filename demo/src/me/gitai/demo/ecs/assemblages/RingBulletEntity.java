@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.ecs.Entity;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**

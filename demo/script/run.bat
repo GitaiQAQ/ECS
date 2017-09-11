@@ -1,0 +1,1 @@
+java -jar -Djava.library.path="/libs" -Dorg.lwjgl.librarypath="/libs/natives" demo.jar

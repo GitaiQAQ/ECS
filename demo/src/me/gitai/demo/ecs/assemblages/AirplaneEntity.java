@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.common.Rect;
@@ -24,8 +25,8 @@ public class AirplaneEntity extends Entity {
     ComBorder border;
 
 
-    public AirplaneEntity(Image airplane) throws SlickException {
-        this.airplane = airplane.copy();
+    public AirplaneEntity() throws SlickException {
+        this.airplane = Resource.getInstance().drawable.getAirplane();
         appearance =
                 new CompAppearance((int)(20));
         health =

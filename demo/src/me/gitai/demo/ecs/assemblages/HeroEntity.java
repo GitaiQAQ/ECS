@@ -1,6 +1,7 @@
 package me.gitai.demo.ecs.assemblages;
 
 import me.gitai.demo.ecs.Demo;
+import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
 import me.gitai.ecs.Entity;
 import me.gitai.ecs.components.*;
@@ -13,20 +14,16 @@ import org.newdawn.slick.SlickException;
  * Created by Gitai.me on 9/9/17.
  */
 public class HeroEntity extends Entity {
-    private Image hero0, hero1, hero;
-
     private CompAppearance appearance;
     private CompHealth health;
     private CompPosition position;
     private CompCollision collision;
+    private Image hero;
 
 
     public HeroEntity() throws SlickException {
-        hero0 = new Image("assets/img/hero0.png");
-        hero = hero1 = new Image("assets/img/hero1.png");
-
         appearance =
-                new CompAppearance((int)(20));
+                new CompAppearance(20);
         health =
                 new CompHealth(500);
         position =
@@ -42,7 +39,7 @@ public class HeroEntity extends Entity {
     }
 
     public void updateHero(int i) {
-        hero = (i%2==0)?hero0:hero1;
+        hero = Resource.getInstance().drawable.getHero()[i%2];
     }
 
     @Override
