@@ -17,19 +17,22 @@ public class PauseState extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame)
+            throws SlickException {
         super.init(gameContainer, stateBasedGame);
 
     }
 
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics)
+            throws SlickException {
         super.render(gameContainer, stateBasedGame, graphics);
 
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i)
+            throws SlickException {
 
     }
 }

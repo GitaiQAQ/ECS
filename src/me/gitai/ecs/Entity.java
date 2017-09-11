@@ -20,11 +20,6 @@ public class Entity {
         return this;
     }
 
-    public Entity removeComponent(String name) {
-        components.remove(name);
-        return this;
-    }
-
     public Component getComponent(String name) {
         return components.get(name);
     }
@@ -34,13 +29,12 @@ public class Entity {
     }
 
     public void render(GameContainer gameContainer, Graphics graphics) {
-        // BaseSystem.out.printf("Render: %s \n", name);
+        // System.out.printf("Render: %s \n", name);
     }
 
     @Override
     public String toString() {
-        return new StringBuilder(super.toString())
-                .append(components.keySet())
-                .toString();
+        return super.toString() +
+                components.keySet();
     }
 }

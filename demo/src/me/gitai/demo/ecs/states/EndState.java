@@ -27,12 +27,14 @@ public class EndState extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame)
+            throws SlickException {
         super.init(gameContainer, stateBasedGame);
         this.mGameContainer = gameContainer;
         restartBtm = new MouseOverArea(gameContainer,
                 null,
-                Demo.WIDTH/2 - 100, Demo.HEIGHT/2 + 150, 200, 50, abstractComponent -> restart = true);
+                Demo.WIDTH/2 - 100, Demo.HEIGHT/2 + 150, 200, 50,
+                abstractComponent -> restart = true);
         restartBtm.setNormalColor(Color.gray);
         restartBtm.setMouseOverColor(Color.white);
     }
@@ -40,7 +42,8 @@ public class EndState extends BasicGameState {
 
 
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics)
+            throws SlickException {
         super.render(gameContainer, stateBasedGame, graphics);
         restartBtm.render(gameContainer, graphics);
         graphics.setColor(Color.black);
@@ -48,8 +51,10 @@ public class EndState extends BasicGameState {
         graphics.setFont(Resource.getInstance().font.printBigLogo());
         graphics.drawString("GAME OVER !", Demo.WIDTH/2 - 170, 200);
         graphics.setFont(Resource.getInstance().font.printBig());
-        graphics.drawString("Score: " + Data.getInstance().getmScore(), Demo.WIDTH/2 - 100, 400);
-        graphics.drawString("  Time: " + Data.getInstance().getTime() + "s", Demo.WIDTH/2 - 100, 430);
+        graphics.drawString("Score: " + Data.getInstance().getmScore(),
+                Demo.WIDTH/2 - 100, 400);
+        graphics.drawString("  Time: " + Data.getInstance().getTime() + "s",
+                Demo.WIDTH/2 - 100, 430);
 
         graphics.drawRect(Demo.WIDTH/2 - 100, Demo.HEIGHT/2 + 150, 200, 50);
         graphics.drawString("RESTART", Demo.WIDTH/2 - 50, Demo.HEIGHT/2 + 150 + 14);
@@ -57,7 +62,8 @@ public class EndState extends BasicGameState {
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i)
+            throws SlickException {
         if (restart) {
             restart = false;
             gameContainer.reinit();

@@ -1,7 +1,5 @@
 package me.gitai.ecs.common;
 
-import me.gitai.ecs.systems.SysCollision;
-
 /**
  * Created by Gitai.me on 9/9/17.
  */

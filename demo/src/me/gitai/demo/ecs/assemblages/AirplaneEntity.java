@@ -15,20 +15,18 @@ import org.newdawn.slick.SlickException;
  * Created by Gitai.me on 9/9/17.
  */
 public class AirplaneEntity extends Entity {
-    Image airplane;
+    private Image airplane;
 
-    CompAppearance appearance;
-    CompHealth health;
-    CompPosition position;
-    CompCollision collision;
-    ComMoveable moveable;
-    ComBorder border;
+    private CompAppearance appearance;
+    private CompHealth health;
+    private CompPosition position;
+    private CompCollision collision;
 
 
     public AirplaneEntity() throws SlickException {
         this.airplane = Resource.getInstance().drawable.getAirplane();
         appearance =
-                new CompAppearance((int)(20));
+                new CompAppearance(20);
         health =
                 new CompHealth((int)(Math.random() * 100));
         position =
@@ -37,11 +35,9 @@ public class AirplaneEntity extends Entity {
                         (int)(Math.random() * (Demo.HEIGHT / 3)) - 100);
         collision =
                 new CompCollision();
-        moveable =
-                new ComMoveable((int)(Math.random() * 5),
-                        (int)(Math.random() * 4) - 2);
-        border =
-                new ComBorder(new Rect(-100, -100, Demo.WIDTH + 200, Demo.HEIGHT + 200));
+        ComMoveable moveable = new ComMoveable((int) (Math.random() * 5),
+                (int) (Math.random() * 4) - 2);
+        ComBorder border = new ComBorder(new Rect(-100, -100, Demo.WIDTH + 200, Demo.HEIGHT + 200));
 
         addComponent(appearance);
         addComponent(new ComOwnership(this));
@@ -63,7 +59,7 @@ public class AirplaneEntity extends Entity {
         airplane.setRotation((float) - Math.toDegrees(position.getDegree()));
         airplane.setAlpha((float) health.getPercentage());
         graphics.drawImage(airplane, position.getX(), position.getY());
-        // graphics.drawString(String.valueOf(health.getValue()), position.getX(), position.getY());
+        graphics.drawString(String.valueOf(health.getValue()), position.getX(), position.getY());
     }
 
     public CompPosition getPosition() {

@@ -32,19 +32,22 @@ public class MainState extends BasicGameState {
         this.mGameContainer = gameContainer;
         startBtm = new MouseOverArea(gameContainer,
                 null,
-                Demo.WIDTH/2 - 100, Demo.HEIGHT/2, 200, 50, abstractComponent -> start=true);
+                Demo.WIDTH/2 - 100, Demo.HEIGHT/2, 200, 50,
+                abstractComponent -> start=true);
         startBtm.setNormalColor(Color.gray);
         startBtm.setMouseOverColor(Color.white);
 
         exitBtm = new MouseOverArea(gameContainer,
                 null,
-                Demo.WIDTH / 2 - 100, Demo.HEIGHT / 2 + 64, 200, 50, abstractComponent -> System.exit(0));
+                Demo.WIDTH / 2 - 100, Demo.HEIGHT / 2 + 64, 200, 50,
+                abstractComponent -> System.exit(0));
         exitBtm.setNormalColor(Color.gray);
         exitBtm.setMouseOverColor(Color.white);
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i)
+            throws SlickException {
         if (start) {
             stateBasedGame.enterState(3);
         }
