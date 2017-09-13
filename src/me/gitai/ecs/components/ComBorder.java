@@ -5,6 +5,7 @@ import me.gitai.ecs.common.Rect;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 边界组件，标记元素活动边界
  */
 public class ComBorder extends Component {
     public static String getStaticName() {

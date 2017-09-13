@@ -1,5 +1,6 @@
 package me.gitai.demo.ecs.assemblages;
 
+import me.gitai.demo.ecs.Config;
 import me.gitai.demo.ecs.Demo;
 import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
@@ -12,6 +13,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 玩家实体类
  */
 public class HeroEntity extends Entity {
     private CompAppearance appearance;
@@ -27,7 +29,7 @@ public class HeroEntity extends Entity {
         health =
                 new CompHealth(500);
         position =
-                new CompPosition(Demo.WIDTH / 2, Demo.HEIGHT - 40);
+                new CompPosition(Config.width / 2, Config.height - 40);
         collision =
                 new CompCollision();
 

@@ -1,10 +1,13 @@
 package me.gitai.ecs;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+
 import java.util.HashMap;
-import org.newdawn.slick.*;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 基类
  */
 public class Entity {
     private String name = this.getClass().getName();
@@ -13,7 +16,7 @@ public class Entity {
         return name;
     }
 
-    private HashMap<String, Component> components = new HashMap<>();
+    private HashMap<String, Component> components = new HashMap<String, Component>();
 
     public Entity addComponent(Component component) {
         components.put(component.getName(), component);

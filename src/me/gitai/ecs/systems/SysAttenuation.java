@@ -1,13 +1,14 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
+import me.gitai.ecs.System;
 import me.gitai.ecs.components.ComAttenuation;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/10/17.
+ * 衰减系统
  */
 public class SysAttenuation extends System {
     public SysAttenuation(List<Entity> mEntitys) {

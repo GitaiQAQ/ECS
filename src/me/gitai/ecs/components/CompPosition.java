@@ -4,6 +4,7 @@ import me.gitai.ecs.Component;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 位置组件，储存当前位置，配合移动组件可以推导下一帧的位置状态
  */
 public class CompPosition extends Component {
 

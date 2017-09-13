@@ -1,5 +1,6 @@
 package me.gitai.demo.ecs.assemblages;
 
+import me.gitai.demo.ecs.Config;
 import me.gitai.demo.ecs.Demo;
 import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
@@ -13,6 +14,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 飞机实体类
  */
 public class AirplaneEntity extends Entity {
     private Image airplane;
@@ -22,7 +24,6 @@ public class AirplaneEntity extends Entity {
     private CompPosition position;
     private CompCollision collision;
 
-
     public AirplaneEntity() throws SlickException {
         this.airplane = Resource.getInstance().drawable.getAirplane();
         appearance =
@@ -31,13 +32,17 @@ public class AirplaneEntity extends Entity {
                 new CompHealth((int)(Math.random() * 100));
         position =
                 new CompPosition((int)(Math.random() * 90) - 45,
-                        (int)(Math.random() * Demo.WIDTH) - 100,
-                        (int)(Math.random() * (Demo.HEIGHT / 3)) - 100);
+                        (int)(Math.random() * Config.width) - 100,
+                        (int)(Math.random() * (Config.height / 3)) - 100);
         collision =
                 new CompCollision();
+
         ComMoveable moveable = new ComMoveable((int) (Math.random() * 5),
                 (int) (Math.random() * 4) - 2);
-        ComBorder border = new ComBorder(new Rect(-100, -100, Demo.WIDTH + 200, Demo.HEIGHT + 200));
+
+        ComBorder border = new ComBorder(
+                new Rect(-100, -100,
+                        Config.width + 200, Config.height + 200));
 
         addComponent(appearance);
         addComponent(new ComOwnership(this));

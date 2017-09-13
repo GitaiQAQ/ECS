@@ -1,13 +1,14 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
+import me.gitai.ecs.System;
 import me.gitai.ecs.components.CompHealth;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/10/17.
+ * 记分系统
  */
 public class SysScore extends System {
     private long mScore;

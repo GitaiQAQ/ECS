@@ -4,6 +4,7 @@ import me.gitai.ecs.Component;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/10/17.
+ * 衰减组件，标记元素存活时间
  */
 public class ComAttenuation extends Component {
     public static String getStaticName() {

@@ -4,6 +4,7 @@ import me.gitai.ecs.Component;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 移动组件，储存速度和角度基础量
  */
 public class ComMoveable extends Component {
     private double speed = 1;

@@ -4,6 +4,7 @@ import me.gitai.ecs.Component;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 基础属性组件
  */
 public class CompAppearance extends Component {
     private int color;

@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 碰撞组件，处理碰撞问题
  */
 public class CompCollision extends Component {
 

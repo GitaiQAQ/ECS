@@ -1,7 +1,7 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
+import me.gitai.ecs.System;
 import me.gitai.ecs.components.ComMoveable;
 import me.gitai.ecs.components.CompPosition;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 移动系统
  */
 public class SysMove extends System {
     public SysMove(List<Entity> entities) {

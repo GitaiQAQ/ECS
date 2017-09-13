@@ -1,9 +1,10 @@
 package me.gitai.ecs.components;
 
-import me.gitai.ecs.*;
+import me.gitai.ecs.Component;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 生命组件，储存元素生命，和存活系统共同控制存活
  */
 public class CompHealth extends Component {
 

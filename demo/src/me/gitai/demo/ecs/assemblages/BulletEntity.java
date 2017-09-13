@@ -1,5 +1,6 @@
 package me.gitai.demo.ecs.assemblages;
 
+import me.gitai.demo.ecs.Config;
 import me.gitai.demo.ecs.Demo;
 import me.gitai.demo.ecs.Resource;
 import me.gitai.demo.ecs.states.PlayState;
@@ -13,6 +14,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 子弹实体类
  */
 public class BulletEntity extends Entity {
     private Image bullet;
@@ -41,7 +43,7 @@ public class BulletEntity extends Entity {
         moveable =
                 new ComMoveable(speed);
         border =
-                new ComBorder(new Rect(0, 0, Demo.WIDTH, Demo.HEIGHT));
+                new ComBorder(new Rect(0, 0, Config.width, Config.height));
 
         attenuation = new ComAttenuation(500);
 
@@ -55,13 +57,13 @@ public class BulletEntity extends Entity {
         addComponent(attenuation);
     }
 
+    public BulletEntity(Entity from, int x, int y, int degree, int _health, int speed) throws SlickException {
+        this(from, new CompPosition(degree, x, y), _health, speed);
+    }
+
     public BulletEntity setOnCollision(CompCollision.CollisionCallback collisionCallback) {
         collision.setCollisionCallback(collisionCallback);
         return this;
-    }
-
-    public BulletEntity(Entity from, int x, int y, int degree, int _health, int speed) throws SlickException {
-        this(from, new CompPosition(degree, x, y), _health, speed);
     }
 
     @Override

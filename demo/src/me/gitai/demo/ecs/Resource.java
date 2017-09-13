@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/11/17.
+ * 资源统一调用接口，参照 Android R 文件
  */
 public class Resource {
     private static Resource ourInstance = new Resource();
@@ -27,11 +28,7 @@ public class Resource {
             drawable = new Drawable();
             font = new Font();
 
-        } catch (SlickException e) {
-            e.printStackTrace();
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SlickException | FontFormatException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -39,10 +36,10 @@ public class Resource {
     public class Cursor {
         private Image arrow, hand, appStarting, wait = null;
         public Cursor() throws SlickException {
-            arrow       = new Image("assets/cursor/Arrow.png");
-            hand        = new Image("assets/cursor/Hand.png");
-            appStarting = new Image("assets/cursor/AppStarting/upload.png");
-            wait        = new Image("assets/cursor/Wait/upload.png");
+            arrow       = new Image(Config.assetsDir + "/cursor/Arrow.png");
+            hand        = new Image(Config.assetsDir + "/cursor/Hand.png");
+            appStarting = new Image(Config.assetsDir + "/cursor/AppStarting/upload.png");
+            wait        = new Image(Config.assetsDir + "/cursor/Wait/upload.png");
         }
 
         public Image getArrow() {
@@ -61,9 +58,6 @@ public class Resource {
             return wait;
         }
 
-        public String getAnimatedWait() {
-            return "assets/cursor/AppStarting.ani";
-        }
     }
 
     public class Drawable {
@@ -71,14 +65,14 @@ public class Resource {
         private final Image[] hero;
 
         public Drawable() throws SlickException {
-            background = new Image("assets/img/background.png");
-            airplane = new Image("assets/img/airplane.png");
-            bullet = new Image("assets/img/bullet.png");
+            background = new Image(Config.assetsDir + "/img/background.png");
+            airplane = new Image(Config.assetsDir + "/img/airplane.png");
+            bullet = new Image(Config.assetsDir + "/img/bullet.png");
             transparent = bullet.copy();
             transparent.setAlpha(0);
             hero = new Image[]{
-                    new Image("assets/img/hero0.png"),
-                    new Image("assets/img/hero1.png")
+                    new Image(Config.assetsDir + "/img/hero0.png"),
+                    new Image(Config.assetsDir + "/img/hero1.png")
             };
         }
 
@@ -113,7 +107,7 @@ public class Resource {
 
         private Font() throws IOException, FontFormatException {
             font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT,
-                    new File("assets/font/Some Kinda Madness.otf"));
+                    new File(Config.assetsDir + "/font/Some Kinda Madness.otf"));
 
             printLabel = new TrueTypeFont(font.deriveFont(java.awt.Font.BOLD, 18f), true);
             printHead = new TrueTypeFont(font.deriveFont(java.awt.Font.BOLD, 28f), true);

@@ -1,6 +1,6 @@
 package me.gitai.demo.ecs.states;
 
-import me.gitai.demo.ecs.BasicGameState;
+import me.gitai.ecs.BasicGameState;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

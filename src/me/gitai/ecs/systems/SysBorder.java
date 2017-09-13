@@ -1,13 +1,17 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
-import me.gitai.ecs.components.*;
+import me.gitai.ecs.System;
+import me.gitai.ecs.components.ComBorder;
+import me.gitai.ecs.components.CompAppearance;
+import me.gitai.ecs.components.CompHealth;
+import me.gitai.ecs.components.CompPosition;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 边界系统
  */
 public class SysBorder extends System {
     public SysBorder(List<Entity> entitys) {

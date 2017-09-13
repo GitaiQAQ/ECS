@@ -1,13 +1,14 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
+import me.gitai.ecs.System;
 import me.gitai.ecs.components.CompHealth;
 
 import java.util.List;
 
 /**
  * Created by Gitai.me on 9/9/17.
+ * 存活系统
  */
 public class SysLive extends System {
     public SysLive(List<Entity> entities) {

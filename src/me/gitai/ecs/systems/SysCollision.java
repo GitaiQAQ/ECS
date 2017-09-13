@@ -1,7 +1,7 @@
 package me.gitai.ecs.systems;
 
-import me.gitai.ecs.System;
 import me.gitai.ecs.Entity;
+import me.gitai.ecs.System;
 import me.gitai.ecs.components.*;
 import org.newdawn.slick.SlickException;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Gitai.me on 9/8/17.
+ * 碰撞系统
  */
 public class SysCollision extends System {
     public SysCollision(List<Entity> entities) {

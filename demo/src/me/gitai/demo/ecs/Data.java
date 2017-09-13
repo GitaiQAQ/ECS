@@ -2,6 +2,7 @@ package me.gitai.demo.ecs;
 
 /**
  * Created by Gitai.me(i@gitai.me) on 9/11/17.
+ * 全局动态储存类
  */
 public class Data {
     private static Data ourInstance = new Data();

@@ -1,7 +1,8 @@
 package me.gitai.demo.ecs.states;
 
 
-import me.gitai.demo.ecs.BasicGameState;
+import me.gitai.demo.ecs.Config;
+import me.gitai.ecs.BasicGameState;
 import me.gitai.demo.ecs.Data;
 import me.gitai.demo.ecs.Demo;
 import me.gitai.demo.ecs.assemblages.AirplaneEntity;
@@ -116,7 +117,7 @@ public class PlayState extends BasicGameState {
                                     100, (int)(Math.random() * 500.0), -30,
                                     10,  -10));
                             mEntities.add(new BulletEntity(hero,
-                                    Demo.WIDTH - 100, (int)(Math.random() * 500.0), 30,
+                                    Config.width - 100, (int)(Math.random() * 500.0), 30,
                                     10,  -10));
                             super.OnCollision();
                         }
